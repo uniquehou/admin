@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-hans"><head>
+{% load static %}
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>增加 代理 | Django 站点管理员</title>
+<link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/forms.css' %}">
+
+
+<script type="text/javascript" src="{% static 'js/a.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/core.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery_002.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/RelatedObjectLookups.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/actions.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/urlify.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/prepopulate.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/xregexp.js' %}"></script>
+
+<meta name="robots" content="NONE,NOARCHIVE">
+</head>
+
+
+<body class=" app-superior model-superior change-form" data-admin-utc-offset="0">
+
+<!-- Container -->
+<div id="container">
+
+    
+    <!-- Header -->
+    <div id="header">
+        <div id="branding">
+        
+<h1 id="site-name"><a href="/admin/">V 管理</a></h1>
+
+        </div>
+        
+        
+        <div id="user-tools">
+            
+                欢迎，
+                <strong>{{ manage_name }}</strong>.
+            
+            
+                
+                    <a href="/">查看站点</a> /
+                
+                
+                    
+                    
+                
+                
+                <a href="/admin/password_change/">修改密码</a> /
+                
+                <a href="/admin/logout/">注销</a>
+            
+        </div>
+        
+        
+        
+    </div>
+    <!-- END Header -->
+    
+<div class="breadcrumbs">
+<a href="/admin/">首页</a>
+› <a href="/admin/superior/">Agent</a>
+› <a href="/admin/superior/superior/">代理</a>
+› 增加 代理
+</div>
+
+    
+
+    
+        
+    
+
+    <!-- Content -->
+    <div id="content" class="colM">
+        
+        <h1>修改 代理</h1>
+        <div id="content-main">
+
+
+
+<form enctype="multipart/form-data" action="" method="post" id="agent_form" novalidate="">
+<input type="hidden" name="id" value="{{agent.id}}">
+{% csrf_token %}
+<div>
+
+
+
+
+
+
+
+  <fieldset class="module aligned ">
+    
+    <span style="color: red">{{error}}</span>
+    
+        <div class="form-row field-username">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_username">账号:</label>
+                        
+                            <div id="username" class="readonly">{{ agent.username }}</div>
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-mobile">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_mobile">手机:</label>
+                        
+                            <input name="mobile" class="vTextField" maxlength="11" required="" id="id_mobile" type="text" value="{{agent.mobile}}">
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-wechat">
+            
+            
+                <div>
+                    
+                    
+                        <label for="id_wechat">微信:</label>
+                        
+                            <input name="wechat" class="vTextField" maxlength="50" id="id_wechat" type="text" value="{{agent.wechat}}">
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-e_mail">
+            
+            
+                <div>
+                    
+                    
+                        <label for="id_e_mail">邮箱:</label>
+                        
+                            <input name="e_mail" class="vTextField" maxlength="254" id="id_e_mail" type="email" value="{{agent.e_mail}}">
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-password">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_password">密码:</label>
+                        
+                            <input name="password" class="vTextField" maxlength="50" required="" id="id_password" type="text">
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-agent_class">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_agent_class">VIP等级:</label>
+                        
+                            <div id="agent_class" class="readonly">{{ agent.agent_class }}</div>
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-consume_point">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_consume_point">点数:</label>
+                        
+                            <input name="consume_point" value="{{agent.consume_point | default:'0' }}" class="vIntegerField" required="" id="id_consume_point" type="number" max="{{ superior.consume_point }}" min="0">
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-superior">
+            
+            
+                <div>
+                    
+                    
+                        <label for="id_superior">上级代理:</label>
+                        
+                            <div class="readonly">{{ agent.superior }}</div>
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-invite_code">
+                <div>
+                        <label>邀请码:</label>
+                        
+                            <div class="readonly">{{ agent.invite_code }}</div>
+                </div>
+            
+        </div>
+    
+</fieldset>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="submit-row">
+<input value="保存" class="default" name="_save" type="submit">
+</div>
+
+
+
+    <script type="text/javascript" id="django-admin-form-add-constants" src="{% static 'js/change_form.js' %}" data-model-name="superior">
+    </script>
+
+
+
+
+<script type="text/javascript" id="django-admin-prepopulated-fields-constants" src="{% static 'js/prepopulate_init.js' %}" data-prepopulated-fields="[]">
+</script>
+
+
+</div>
+</form></div>
+
+        
+        <br class="clear">
+    </div>
+    <!-- END Content -->
+
+    <div id="footer"></div>
+</div>
+<!-- END Container -->
+
+
+
+</body>
+<script type="text/javascript">
+</script>
+</html>

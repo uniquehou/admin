@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-hans"><head>
+{% load static %}
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>增加 卡密 | Django 站点管理员</title>
+<link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/forms.css' %}">
+
+
+<script type="text/javascript" src="{% static 'js/a.js' %"></script>
+<script type="text/javascript" src="{% static 'js/core.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery_002.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/RelatedObjectLookups.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/actions.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/urlify.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/prepopulate.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/xregexp.js' %}"></script>
+
+<meta name="robots" content="NONE,NOARCHIVE">
+</head>
+
+
+<body class=" app-agent model-carmel change-form" data-admin-utc-offset="0">
+
+<!-- Container -->
+<div id="container">
+
+    
+    <!-- Header -->
+    <div id="header">
+        <div id="branding">
+        
+<h1 id="site-name"><a href="/admin/">V 管理</a></h1>
+
+        </div>
+        
+        
+        <div id="user-tools">
+            
+                欢迎，
+                <strong>{{agent.username}}</strong>.
+            
+            
+                
+                    <a href="/">查看站点</a> /
+                
+                
+                    
+                    
+                
+                
+                <a href="/admin/password_change/">修改密码</a> /
+                
+                <a href="/admin/logout/">注销</a>
+            
+        </div>
+        
+        
+        
+    </div>
+    <!-- END Header -->
+    
+<div class="breadcrumbs">
+<a href="/admin/">首页</a>
+› <a href="/admin/agent/">Agent</a>
+› <a href="/admin/agent/carmel/">卡密</a>
+› 修改 卡密
+</div>
+
+    
+
+    
+        
+    
+
+    <!-- Content -->
+    <div id="content" class="colM">
+        
+        <h1>修改 卡密</h1>
+        <div id="content-main">
+
+
+
+<form enctype="multipart/form-data" action="" method="post" id="carmel_form" novalidate="">
+{% csrf_token %}
+<input type="hidden" name="id" value="{{carmel.id}}">
+<div>
+
+
+
+
+
+
+
+  <fieldset class="module aligned ">
+    
+        <div class="form-row field-code">
+            
+            
+                <div>
+                    
+                    
+                        <label>剩余:</label>
+                        
+                            <div class="readonly"><span id="id_consume_point">{{agent.consume_point}}</span> 点</div>
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-type_class">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_type_class">类型:</label>
+                        
+                            <select name="type_class" required="" id="id_type_class">
+
+  <option value="空卡">空卡</option>
+
+  <option value="月卡" onclick="sub_point(this);">月卡</option>
+
+  <option value="季卡" onclick="sub_point(this);">季卡</option>
+
+  <option value="年卡" onclick="sub_point(this);">年卡</option>
+
+</select>
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-code">
+            
+            
+                <div>
+                    
+                    
+                        <label>卡密:</label>
+                        
+                            <div class="readonly">{{ carmel.code }}</div>
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+</fieldset>
+
+
+
+<div class="submit-row">
+<input value="保存" class="default" name="_save" type="submit">
+</div>
+
+
+
+    <script type="text/javascript" id="django-admin-form-add-constants" src="{% static 'js/change_form.js' %}" data-model-name="carmel">
+    </script>
+
+
+
+
+<script type="text/javascript" id="django-admin-prepopulated-fields-constants" src="{% static 'js/prepopulate_init.js' %}" data-prepopulated-fields="[]">
+</script>
+
+
+</div>
+</form></div>
+
+        
+        <br class="clear">
+    </div>
+    <!-- END Content -->
+
+    <div id="footer"></div>
+</div>
+<!-- END Container -->
+
+<script type="text/javascript">
+    type_class = document.getElementById('id_type_class');
+    consume_point = document.getElementById('id_consume_point');
+    point = parseInt(consume_point.innerText);
+    card_point = {{carmel.point}}
+    function sub_point(elem) {
+        if (elem.innerText == '月卡')
+            consume_point.innerText = point - 1 + card_point;
+        else if (elem.innerText == '季卡')
+            consume_point.innerText = point - 2 + card_point;
+        else if (elem.innerText == '年卡')
+            consume_point.innerText = point - 4 + card_point;
+        if (consume_point.innerText < '0') {
+            alert("剩余点数不足");
+            consume_point.innerText = point;
+            elem.innerText = "{{carmel.type_class}}";
+        }
+    }
+
+    options = document.querySelectorAll("option");
+    for(i=0; i<options.length; i++)
+        if (options[i].value == "{{carmel.type_class}}") {
+            options[i].selected = "selected";
+            break;
+        }
+</script>
+
+</body></html>

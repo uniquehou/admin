@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<title>选择 代理 来修改 | Django 站点管理员</title>
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">  
+	<link rel="stylesheet" type="text/css" href="{% static 'css/changelists.css' %}">
+	<script type="text/javascript" src="{% static 'js/a.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/core.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/jquery_002.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/RelatedObjectLookups.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/actions.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/urlify.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/prepopulate.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/xregexp.js' %}"></script>
+
+	<meta name="robots" content="NONE,NOARCHIVE">
+</head>
+
+
+<body class=" app-agent model-agent change-list" data-admin-utc-offset="0">
+
+<!-- Container -->
+<div id="container">
+	<!-- Header -->
+	<div id="header">
+		<div id="branding">
+		<h1 id="site-name"><a href="/admin/">V 管理</a></h1>
+		</div>
+		<div id="user-tools">
+			
+				欢迎，
+				<strong>{{ manage_name }}</strong>.
+			
+			
+				
+					<a href="/">查看站点</a> /
+				
+				
+					
+					
+				
+				
+				<a href="/admin/password_change/">修改密码</a> /
+				
+				<a href="/admin/logout/">注销</a>
+			
+		</div>   
+	</div>
+	<!-- END Header -->
+	
+<div class="breadcrumbs">
+<a href="/admin/">首页</a>
+› <a href="/admin/agent/">Agent</a>
+› 代理
+</div>
+
+	<!-- Content -->
+	<div id="content" class="flex">
+		
+		<h1>选择 代理 来修改</h1>
+		
+		<div id="content-main">
+		<ul class="object-tools">
+			<li>
+			  <a href="/admin/agent/agent/add/" class="addlink">
+				增加 代理
+			  </a>
+			</li>
+		</ul>
+		<div class="module filtered" id="changelist">
+
+
+		<div id="toolbar"><form id="changelist-search" method="get">
+		<div><!-- DIV needed for valid HTML -->
+		<label for="searchbar"><img src="{% static 'img/search.svg' %}" alt="Search"></label>
+		<input size="40" name="q" id="searchbar" autofocus="" type="text">
+		<input value="搜索" type="submit">
+		</div>
+		</form></div>
+
+		<!-- <div id="changelist-filter">
+		<h2>过滤器</h2>
+			
+		<h3> 以 上级代理</h3>
+		<ul>
+		<li class="selected">
+		  <a href="/admin/agent/agent/?" title="全部">全部</a></li>
+
+		  {% for agent in agents %}
+		  <li>  <a href="/admin/agent/agent/?username={{ agent.superior }}" title="{{ agent.superior }}">{{ agent.superior }}</a>  </li>
+		  {% endfor %}
+		</ul>
+
+		</div> -->
+
+
+
+		<form id="changelist-form" method="post" novalidate="">
+		<div class="actions">
+			<label>动作 <select name="action" required="">
+				<option value="" selected="selected">---------</option>
+				<option value="delete_selected">删除所选的 代理</option>
+			</select></label>
+			<input name="select_across" value="0" class="select-across" type="hidden">
+			<button type="submit" class="button" title="运行选中的动作" name="index" value="0">执行</button>
+			
+			<span class="action-counter" data-actions-icnt="{{agents|length}}" style="display: inline;">{{agents|length}} 个中 0 个被选</span> 
+		</div>
+
+		<div class="results">
+			<table id="result_list">
+				<thead>
+					<tr>
+						<th scope="col" class="action-checkbox-column">
+							<div class="text"><span><input id="action-toggle" type="checkbox"></span></div>
+							<div class="clear"></div>
+						</th>
+						<th>
+							<div class="text"><a href="?o=1">账号</a></div>
+							<div class="clear"></div>
+						</th>
+						<th scope="col"  class="sortable column-mobile">
+							<div class="text"><a href="?o=2">手机</a></div>
+							<div class="clear"></div>
+						</th>
+						<th scope="col"  class="sortable column-consume_point">
+							<div class="text"><a href="?o=3">点数</a></div>
+							<div class="clear"></div>
+						</th>
+						<th scope="col"  class="sortable column-invite_code">
+							<div class="text"><a href="?o=4">邀请码</a></div>
+							<div class="clear"></div>
+						</th>
+						<th scope="col"  class="sortable column-create_time">
+							<div class="text"><a href="?o=5">创建时间</a></div>
+							<div class="clear"></div>
+					</tr>
+				</thead>
+				<tbody>
+					{% csrf_token %}
+					{% for agent in agents %}
+					<tr class="row{{ forloop.counter }}"><td class="action-checkbox"><input name="_selected_action" value="{{agent.id}}" class="action-select" type="checkbox"></td><th class="field-username"><a href="/admin/agent/agent/{{ agent.id }}/change/">{{ agent.username }}</a></th><td class="field-mobile">{{ agent.mobile }}</td><td class="field-consume_point">{{ agent.consume_point }}</td><td class="field-invite_code">{{ agent.invite_code }}</td><td class="field-create_time nowrap">{{ agent.create_time }}</td></tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+
+		<p class="paginator"> {{agents|length}} 代理  </p>
+		</form>
+		</div>
+		</div>
+
+		
+		<br class="clear">
+	</div>
+	<!-- END Content -->
+
+	<div id="footer"></div>
+</div>
+<!-- END Container -->
+
+
+
+</body></html>
