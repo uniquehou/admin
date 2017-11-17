@@ -1,0 +1,508 @@
+-- MySQL dump 10.13  Distrib 5.5.53, for Win32 (AMD64)
+--
+-- Host: localhost    Database: v
+-- ------------------------------------------------------
+-- Server version	5.5.53
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `agent_agent`
+--
+
+DROP TABLE IF EXISTS `agent_agent`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `agent_agent` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(100) NOT NULL,
+  `mobile` varchar(11) NOT NULL,
+  `wechat` varchar(50) NOT NULL,
+  `e_mail` varchar(254) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `agent_class` smallint(6) NOT NULL,
+  `consume_point` int(11) NOT NULL,
+  `invite_code` varchar(6) NOT NULL,
+  `superior_id` int(11) DEFAULT NULL,
+  `create_time` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`),
+  KEY `agent_agent_superior_id_411d84a7` (`superior_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `agent_agent`
+--
+
+LOCK TABLES `agent_agent` WRITE;
+/*!40000 ALTER TABLE `agent_agent` DISABLE KEYS */;
+INSERT INTO `agent_agent` VALUES (10,'1','1','','','1',1,9,'P4ZVPI',NULL,'2017-11-13 03:16:00'),(11,'','1_1','','','pbkdf2_sha256$36000$ybodEpcGxInj$rAOFeUB47u1OoHvA3',2,0,'P4ZVPI',10,'2017-11-13 04:01:38'),(12,'1.1','1.1','','','pbkdf2_sha256$36000$3qOFWZDQzZJJ$FsmFR7GEb0eSnwmfh',2,0,'P4ZVPI',10,'2017-11-13 04:05:28'),(14,'1.2','1.2','','','pbkdf2_sha256$36000$MzQEuucZLRdn$a1ieiGDVOM6UAWptL',2,0,'OK2416',10,'2017-11-13 07:44:13');
+/*!40000 ALTER TABLE `agent_agent` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `agent_carmel`
+--
+
+DROP TABLE IF EXISTS `agent_carmel`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `agent_carmel` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar(32) NOT NULL,
+  `type_class` varchar(20) NOT NULL,
+  `point` smallint(6) NOT NULL,
+  `create_time` datetime NOT NULL,
+  `status` smallint(6) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `agent_carmel`
+--
+
+LOCK TABLES `agent_carmel` WRITE;
+/*!40000 ALTER TABLE `agent_carmel` DISABLE KEYS */;
+INSERT INTO `agent_carmel` VALUES (1,'5a44bac4d440ea4fb945758f9e41d3ec','季卡',2,'2017-11-11 14:24:06',1);
+/*!40000 ALTER TABLE `agent_carmel` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `agent_user`
+--
+
+DROP TABLE IF EXISTS `agent_user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `agent_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `mobile` varchar(20) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `vip_class` varchar(20) NOT NULL,
+  `vip_date` datetime NOT NULL,
+  `create_time` datetime NOT NULL,
+  `superior_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `agent_user_superior_id_4cec4b5e` (`superior_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `agent_user`
+--
+
+LOCK TABLES `agent_user` WRITE;
+/*!40000 ALTER TABLE `agent_user` DISABLE KEYS */;
+INSERT INTO `agent_user` VALUES (1,'18712345678','18712345678','注册会员','2017-11-13 14:05:06','2017-11-13 14:05:06',10),(2,'17812345678','17812345678','月度会员','2017-11-13 14:05:52','2017-11-13 14:05:52',12),(3,'18334693214','96e79218965eb72c92a549dd5a330112','注册会员','2017-03-17 20:50:32','2017-11-17 15:56:06',10);
+/*!40000 ALTER TABLE `agent_user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_group`
+--
+
+DROP TABLE IF EXISTS `auth_group`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_group` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(80) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_group`
+--
+
+LOCK TABLES `auth_group` WRITE;
+/*!40000 ALTER TABLE `auth_group` DISABLE KEYS */;
+INSERT INTO `auth_group` VALUES (3,'总管理'),(4,'代理');
+/*!40000 ALTER TABLE `auth_group` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_group_permissions`
+--
+
+DROP TABLE IF EXISTS `auth_group_permissions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_group_permissions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `group_id` int(11) NOT NULL,
+  `permission_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `auth_group_permissions_group_id_permission_id_0cd325b0_uniq` (`group_id`,`permission_id`),
+  KEY `auth_group_permissions_group_id_b120cbf9` (`group_id`),
+  KEY `auth_group_permissions_permission_id_84c5c92e` (`permission_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=64 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_group_permissions`
+--
+
+LOCK TABLES `auth_group_permissions` WRITE;
+/*!40000 ALTER TABLE `auth_group_permissions` DISABLE KEYS */;
+INSERT INTO `auth_group_permissions` VALUES (1,1,32),(2,1,33),(9,1,36),(8,1,35),(7,1,34),(6,1,31),(10,1,37),(11,1,38),(12,1,39),(13,1,4),(14,1,5),(15,1,6),(16,1,7),(17,1,8),(18,1,9),(19,1,25),(20,1,26),(21,1,27),(22,1,28),(23,1,29),(24,1,30),(34,3,1),(35,3,2),(36,3,3),(37,3,4),(38,3,5),(39,3,6),(40,3,7),(41,3,8),(42,3,9),(43,3,10),(44,3,11),(45,3,12),(46,3,13),(47,3,14),(48,3,15),(49,3,16),(50,3,17),(51,3,18),(52,3,19),(53,3,20),(54,3,21),(55,4,10),(56,4,11),(57,4,12),(58,4,13),(59,4,14),(60,4,15),(62,4,17),(63,4,18);
+/*!40000 ALTER TABLE `auth_group_permissions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_permission`
+--
+
+DROP TABLE IF EXISTS `auth_permission`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_permission` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `content_type_id` int(11) NOT NULL,
+  `codename` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `auth_permission_content_type_id_codename_01ab375a_uniq` (`content_type_id`,`codename`),
+  KEY `auth_permission_content_type_id_2f476e4b` (`content_type_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_permission`
+--
+
+LOCK TABLES `auth_permission` WRITE;
+/*!40000 ALTER TABLE `auth_permission` DISABLE KEYS */;
+INSERT INTO `auth_permission` VALUES (1,'Can add 公告',1,'add_announcement'),(2,'Can change 公告',1,'change_announcement'),(3,'Can delete 公告',1,'delete_announcement'),(4,'Can add 直播平台',2,'add_live'),(5,'Can change 直播平台',2,'change_live'),(6,'Can delete 直播平台',2,'delete_live'),(7,'Can add 版本',3,'add_version'),(8,'Can change 版本',3,'change_version'),(9,'Can delete 版本',3,'delete_version'),(10,'Can add 代理',4,'add_agent'),(11,'Can change 代理',4,'change_agent'),(12,'Can delete 代理',4,'delete_agent'),(13,'Can add 卡密',5,'add_carmel'),(14,'Can change 卡密',5,'change_carmel'),(15,'Can delete 卡密',5,'delete_carmel'),(16,'Can add 会员',6,'add_user'),(17,'Can change 会员',6,'change_user'),(18,'Can delete 会员',6,'delete_user'),(19,'Can add log entry',7,'add_logentry'),(20,'Can change log entry',7,'change_logentry'),(21,'Can delete log entry',7,'delete_logentry'),(22,'Can add permission',8,'add_permission'),(23,'Can change permission',8,'change_permission'),(24,'Can delete permission',8,'delete_permission'),(25,'Can add group',9,'add_group'),(26,'Can change group',9,'change_group'),(27,'Can delete group',9,'delete_group'),(28,'Can add user',10,'add_user'),(29,'Can change user',10,'change_user'),(30,'Can delete user',10,'delete_user'),(31,'Can add content type',11,'add_contenttype'),(32,'Can change content type',11,'change_contenttype'),(33,'Can delete content type',11,'delete_contenttype'),(34,'Can add session',12,'add_session'),(35,'Can change session',12,'change_session'),(36,'Can delete session',12,'delete_session');
+/*!40000 ALTER TABLE `auth_permission` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_user`
+--
+
+DROP TABLE IF EXISTS `auth_user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `password` varchar(128) NOT NULL,
+  `last_login` datetime DEFAULT NULL,
+  `is_superuser` tinyint(1) NOT NULL,
+  `username` varchar(150) NOT NULL,
+  `first_name` varchar(30) NOT NULL,
+  `last_name` varchar(30) NOT NULL,
+  `email` varchar(254) NOT NULL,
+  `is_staff` tinyint(1) NOT NULL,
+  `is_active` tinyint(1) NOT NULL,
+  `date_joined` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_user`
+--
+
+LOCK TABLES `auth_user` WRITE;
+/*!40000 ALTER TABLE `auth_user` DISABLE KEYS */;
+INSERT INTO `auth_user` VALUES (1,'pbkdf2_sha256$36000$1Y2dK9z4Gcpp$6RRn1/Kl99QaRUtHWiLe4T+P6im1qYXXQcK77C+PEVM=','2017-11-17 13:29:51',1,'adminuser','','','admin@admin.com',1,1,'2017-11-11 05:24:48'),(2,'pbkdf2_sha256$36000$wM8A4BQbDhhG$25xqauHmbTUr1QmWvRsZVqsbUcXE90o3L0I+Hk5DnwY=','2017-11-11 12:10:10',0,'adminuser1','','','',1,1,'2017-11-11 11:06:00'),(8,'pbkdf2_sha256$36000$AStYx0y6Qbqo$rUfbbvsEfrS8nAhgq3exu4tWq7ZhrCfkoGVgzFT4odI=','2017-11-13 07:54:50',0,'1.2','','','',1,1,'2017-11-13 07:44:13'),(6,'pbkdf2_sha256$36000$QTEAJTW170zJ$GUgAV1egus28Jh/0t4wOIMUYQ3yD+c1oWReagLHVMus=','2017-11-17 12:49:20',0,'1','','','',1,1,'2017-11-13 03:12:17');
+/*!40000 ALTER TABLE `auth_user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_user_groups`
+--
+
+DROP TABLE IF EXISTS `auth_user_groups`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_user_groups` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `group_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `auth_user_groups_user_id_group_id_94350c0c_uniq` (`user_id`,`group_id`),
+  KEY `auth_user_groups_user_id_6a12ed8b` (`user_id`),
+  KEY `auth_user_groups_group_id_97559544` (`group_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_user_groups`
+--
+
+LOCK TABLES `auth_user_groups` WRITE;
+/*!40000 ALTER TABLE `auth_user_groups` DISABLE KEYS */;
+INSERT INTO `auth_user_groups` VALUES (1,2,1),(6,6,4),(5,5,4),(8,8,4);
+/*!40000 ALTER TABLE `auth_user_groups` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_user_user_permissions`
+--
+
+DROP TABLE IF EXISTS `auth_user_user_permissions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_user_user_permissions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `permission_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `auth_user_user_permissions_user_id_permission_id_14a6b632_uniq` (`user_id`,`permission_id`),
+  KEY `auth_user_user_permissions_user_id_a95ead1b` (`user_id`),
+  KEY `auth_user_user_permissions_permission_id_1fbb5f2c` (`permission_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_user_user_permissions`
+--
+
+LOCK TABLES `auth_user_user_permissions` WRITE;
+/*!40000 ALTER TABLE `auth_user_user_permissions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_user_user_permissions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_admin_log`
+--
+
+DROP TABLE IF EXISTS `django_admin_log`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `django_admin_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `action_time` datetime NOT NULL,
+  `object_id` longtext,
+  `object_repr` varchar(200) NOT NULL,
+  `action_flag` smallint(5) unsigned NOT NULL,
+  `change_message` longtext NOT NULL,
+  `content_type_id` int(11) DEFAULT NULL,
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `django_admin_log_content_type_id_c4bce8eb` (`content_type_id`),
+  KEY `django_admin_log_user_id_c564eba6` (`user_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=66 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_admin_log`
+--
+
+LOCK TABLES `django_admin_log` WRITE;
+/*!40000 ALTER TABLE `django_admin_log` DISABLE KEYS */;
+INSERT INTO `django_admin_log` VALUES (1,'2017-11-11 08:47:03','1','Info object',1,'[{\"added\": {}}]',1,1),(2,'2017-11-11 09:15:22','1','黑夜',1,'[{\"added\": {}}]',2,1),(3,'2017-11-11 09:36:52','1','黑夜',2,'[{\"changed\": {\"fields\": [\"url\"]}}]',2,1),(4,'2017-11-11 10:01:01','1','1.1',1,'[{\"added\": {}}]',10,1),(5,'2017-11-11 10:02:43','1','这是一个示例的公告',1,'[{\"added\": {}}]',9,1),(6,'2017-11-11 11:01:40','1','123456',1,'[{\"added\": {}}]',11,1),(7,'2017-11-11 11:02:33','1','123456',3,'',11,1),(8,'2017-11-11 11:03:36','2','123456',1,'[{\"added\": {}}]',11,1),(9,'2017-11-11 11:06:14','2','adminuser1',1,'[{\"added\": {}}]',6,1),(10,'2017-11-11 11:09:13','1','代理',1,'[{\"added\": {}}]',5,1),(11,'2017-11-11 11:09:52','2','adminuser1',2,'[]',6,1),(12,'2017-11-11 11:10:24','2','adminuser1',2,'[{\"changed\": {\"fields\": [\"is_staff\"]}}]',6,1),(13,'2017-11-11 14:24:06','1','5a44bac4d440ea4fb945758f9e41d3ec',1,'[{\"added\": {}}]',12,1),(14,'2017-11-11 14:54:50','2','这是另一则公告',1,'[{\"added\": {}}]',9,1),(15,'2017-11-12 02:45:57','1','代理',2,'[]',5,1),(16,'2017-11-12 02:47:39','1','总管理',2,'[{\"changed\": {\"fields\": [\"name\"]}}]',5,1),(17,'2017-11-12 03:14:33','2','123456',2,'[]',11,1),(18,'2017-11-12 03:34:28','2','123456',2,'[]',11,1),(19,'2017-11-12 04:27:20','2','代理',1,'[{\"added\": {}}]',5,1),(20,'2017-11-12 04:40:45','7','jjj',1,'[{\"added\": {}}]',11,1),(21,'2017-11-13 00:15:26','8','abc',1,'[{\"added\": {}}]',11,3),(22,'2017-11-13 02:01:00','3','总管理',1,'[{\"added\": {}}]',9,1),(23,'2017-11-13 02:01:29','4','代理',1,'[{\"added\": {}}]',9,1),(24,'2017-11-13 02:01:58','2','',3,'',9,1),(25,'2017-11-13 02:06:17','9','111',1,'[{\"added\": {}}]',4,1),(26,'2017-11-13 03:07:21','4','代理',2,'[]',9,1),(27,'2017-11-13 03:12:17','10','1',1,'[{\"added\": {}}]',4,1),(28,'2017-11-13 07:57:22','1','5a44bac4d440ea4fb945758f9e41d3ec',2,'[{\"changed\": {\"fields\": [\"type_class\"]}}]',5,6),(29,'2017-11-13 07:57:40','1','5a44bac4d440ea4fb945758f9e41d3ec',2,'[{\"changed\": {\"fields\": [\"type_class\"]}}]',5,6),(30,'2017-11-13 14:05:06','1','18712345678',1,'[{\"added\": {}}]',6,1),(31,'2017-11-13 14:05:52','2','17812345678',1,'[{\"added\": {}}]',6,1),(32,'2017-11-14 12:37:56','2','',3,'',1,1),(33,'2017-11-14 12:37:56','1','',3,'',1,1),(34,'2017-11-14 12:38:19','3','this is a  job.',1,'[{\"added\": {}}]',1,1),(35,'2017-11-15 03:43:08','3','this is a  job.',2,'[{\"changed\": {\"fields\": [\"text\"]}}]',1,1),(36,'2017-11-15 03:47:05','3','this is a  job.',2,'[]',1,1),(37,'2017-11-15 03:56:33','3','this is a  job.',2,'[{\"changed\": {\"fields\": [\"text\"]}}]',1,1),(38,'2017-11-15 04:20:28','3','this is a  job.',2,'[]',1,1),(39,'2017-11-15 04:21:39','3','this is a  job.',2,'[]',1,1),(40,'2017-11-15 04:22:24','3','this is a  job.',2,'[]',1,1),(41,'2017-11-15 04:23:56','3','this is a  job.',2,'[]',1,1),(42,'2017-11-15 04:29:37','1','',3,'',2,1),(43,'2017-11-15 04:30:58','2','黑黑 -- add',1,'[{\"added\": {}}]',2,1),(44,'2017-11-15 04:31:25','2','黑黑 -- add',2,'[{\"changed\": {\"fields\": [\"name\"]}}]',2,1),(45,'2017-11-15 04:31:55','2','黑黑 -- add',2,'[{\"changed\": {\"fields\": [\"name\"]}}]',2,1),(46,'2017-11-15 04:32:55','2','黑黑 -- add',2,'[{\"changed\": {\"fields\": [\"name\"]}}]',2,1),(47,'2017-11-15 04:33:50','None','hh',1,'[{\"added\": {}}]',2,1),(48,'2017-11-15 04:35:05','None','abc',1,'[{\"added\": {}}]',2,1),(49,'2017-11-15 04:40:32','None','hh',1,'[{\"added\": {}}]',2,1),(50,'2017-11-15 04:42:39','3','hh',1,'[{\"added\": {}}]',2,1),(51,'2017-11-15 04:43:51','3','hh -- add',2,'[{\"changed\": {\"fields\": [\"anchor_count\"]}}]',2,1),(52,'2017-11-15 04:44:21','3','hh -- add',2,'[{\"changed\": {\"fields\": [\"anchor_count\"]}}]',2,1),(53,'2017-11-15 04:44:54','3','hh -- add',2,'[{\"changed\": {\"fields\": [\"anchor_count\"]}}]',2,1),(54,'2017-11-15 04:46:07','3','hh -- add',2,'[{\"changed\": {\"fields\": [\"name\", \"anchor_count\"]}}]',2,1),(55,'2017-11-15 12:16:57','3','hh -- add',2,'[{\"changed\": {\"fields\": [\"show_image\"]}}]',2,1),(56,'2017-11-17 13:30:24','3','hh -- add',3,'',2,1),(57,'2017-11-17 13:30:24','2','黑黑 -- add',3,'',2,1),(58,'2017-11-17 13:31:33','4','hh',1,'[{\"added\": {}}]',2,1),(59,'2017-11-17 13:33:49','4','hh',3,'',2,1),(60,'2017-11-17 13:37:06','5','hh',1,'[{\"added\": {}}]',2,1),(61,'2017-11-17 13:42:10','6','aa',1,'[{\"added\": {}}]',2,1),(62,'2017-11-17 13:46:42','5','hh',3,'',2,1),(63,'2017-11-17 13:47:07','7','bb',1,'[{\"added\": {}}]',2,1),(64,'2017-11-17 13:47:27','7','bb',3,'',2,1),(65,'2017-11-17 14:05:31','8','bb',1,'[{\"added\": {}}]',2,1);
+/*!40000 ALTER TABLE `django_admin_log` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_content_type`
+--
+
+DROP TABLE IF EXISTS `django_content_type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `django_content_type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `app_label` varchar(100) NOT NULL,
+  `model` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `django_content_type_app_label_model_76bd3d3b_uniq` (`app_label`,`model`)
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_content_type`
+--
+
+LOCK TABLES `django_content_type` WRITE;
+/*!40000 ALTER TABLE `django_content_type` DISABLE KEYS */;
+INSERT INTO `django_content_type` VALUES (1,'main','announcement'),(2,'main','live'),(3,'main','version'),(4,'agent','agent'),(5,'agent','carmel'),(6,'agent','user'),(7,'admin','logentry'),(8,'auth','permission'),(9,'auth','group'),(10,'auth','user'),(11,'contenttypes','contenttype'),(12,'sessions','session');
+/*!40000 ALTER TABLE `django_content_type` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_migrations`
+--
+
+DROP TABLE IF EXISTS `django_migrations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `django_migrations` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `app` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `applied` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_migrations`
+--
+
+LOCK TABLES `django_migrations` WRITE;
+/*!40000 ALTER TABLE `django_migrations` DISABLE KEYS */;
+INSERT INTO `django_migrations` VALUES (1,'contenttypes','0001_initial','2017-11-13 01:45:36'),(2,'auth','0001_initial','2017-11-13 01:45:38'),(3,'admin','0001_initial','2017-11-13 01:45:38'),(4,'admin','0002_logentry_remove_auto_add','2017-11-13 01:45:38'),(5,'agent','0001_initial','2017-11-13 01:45:38'),(6,'contenttypes','0002_remove_content_type_name','2017-11-13 01:45:39'),(7,'auth','0002_alter_permission_name_max_length','2017-11-13 01:45:39'),(8,'auth','0003_alter_user_email_max_length','2017-11-13 01:45:39'),(9,'auth','0004_alter_user_username_opts','2017-11-13 01:45:39'),(10,'auth','0005_alter_user_last_login_null','2017-11-13 01:45:39'),(11,'auth','0006_require_contenttypes_0002','2017-11-13 01:45:39'),(12,'auth','0007_alter_validators_add_error_messages','2017-11-13 01:45:39'),(13,'auth','0008_alter_user_username_max_length','2017-11-13 01:45:39'),(14,'main','0001_initial','2017-11-13 01:45:39'),(15,'sessions','0001_initial','2017-11-13 01:45:39'),(16,'agent','0002_agent_create_time','2017-11-13 03:16:00'),(17,'agent','0003_auto_20171113_1600','2017-11-13 08:00:52'),(18,'agent','0004_auto_20171117_2123','2017-11-17 13:23:10'),(19,'main','0002_auto_20171117_2123','2017-11-17 13:23:10'),(20,'main','0003_auto_20171117_2136','2017-11-17 13:36:39');
+/*!40000 ALTER TABLE `django_migrations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_session`
+--
+
+DROP TABLE IF EXISTS `django_session`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `django_session` (
+  `session_key` varchar(40) NOT NULL,
+  `session_data` longtext NOT NULL,
+  `expire_date` datetime NOT NULL,
+  PRIMARY KEY (`session_key`),
+  KEY `django_session_expire_date_a5c62663` (`expire_date`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_session`
+--
+
+LOCK TABLES `django_session` WRITE;
+/*!40000 ALTER TABLE `django_session` DISABLE KEYS */;
+INSERT INTO `django_session` VALUES ('lhwtq47ttmysrmngd4n715xxhc2m0v54','NGMyZmM2MTJhMDIyNTUzMDk1OTQ3MmI3MmMxNmYwMTAwNGJmOWM2NTp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJhYWNjYTE5ODlmMzk1N2YxOTMwMDc0M2E0Mjg4MWViNjhiNmE2M2RlIn0=','2017-12-01 13:29:51');
+/*!40000 ALTER TABLE `django_session` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `main_announcement`
+--
+
+DROP TABLE IF EXISTS `main_announcement`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `main_announcement` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `text` longtext NOT NULL,
+  `create_time` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `main_announcement`
+--
+
+LOCK TABLES `main_announcement` WRITE;
+/*!40000 ALTER TABLE `main_announcement` DISABLE KEYS */;
+INSERT INTO `main_announcement` VALUES (3,'this is a  job...1232112321123214','2017-11-14 12:38:19'),(4,'this is a main','2017-11-17 12:39:19'),(5,'this is a new main','2017-11-17 14:39:19');
+/*!40000 ALTER TABLE `main_announcement` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `main_live`
+--
+
+DROP TABLE IF EXISTS `main_live`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `main_live` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `show_image` varchar(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `anchor_count` int(11) NOT NULL,
+  `url` varchar(1000) NOT NULL,
+  `create_time` datetime NOT NULL,
+  `summary` longtext NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `main_live`
+--
+
+LOCK TABLES `main_live` WRITE;
+/*!40000 ALTER TABLE `main_live` DISABLE KEYS */;
+INSERT INTO `main_live` VALUES (8,'live/show-1.jpg','bb',6,'http://www.baidu.com','2017-11-17 14:05:31','bb'),(6,'live/show-3_Jf3nQTP.jpg','aa',4,'http://www.baidu.com','2017-11-17 13:42:10','aa');
+/*!40000 ALTER TABLE `main_live` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `main_version`
+--
+
+DROP TABLE IF EXISTS `main_version`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `main_version` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `version` varchar(20) NOT NULL,
+  `mark` longtext NOT NULL,
+  `update_url` varchar(200) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `main_version`
+--
+
+LOCK TABLES `main_version` WRITE;
+/*!40000 ALTER TABLE `main_version` DISABLE KEYS */;
+INSERT INTO `main_version` VALUES (1,'1.1','','http://www.baidu.com');
+/*!40000 ALTER TABLE `main_version` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `mobile` varchar(20) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `superior` int(11) DEFAULT NULL,
+  `invite_code` varchar(10) DEFAULT NULL,
+  `vip_date` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1000005 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1,'123','123',NULL,NULL,'2017-11-08 17:55:36'),(2,'456','456',NULL,NULL,NULL),(3,'111','96e79218965eb72c92a549dd5a330112',NULL,'DHKVY2','2017-11-09 01:05:04'),(4,'123','e10adc3949ba59abbe56e057f20f883e',NULL,'LPZ457','2017-11-09 01:08:09'),(1000002,'18334693214','7fa8282ad93047a4d6fe6111c93b308a',0,'ISX159','2017-11-10 00:33:06'),(1000000,'1','1',NULL,NULL,NULL),(1000003,'18434755428','96e79218965eb72c92a549dd5a330112',1000002,'FLYZ23','2017-11-10 00:43:06'),(1000004,'15103532447','e10adc3949ba59abbe56e057f20f883e',0,'EIKS02','2017-11-10 10:05:52');
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2017-11-17 22:36:18
